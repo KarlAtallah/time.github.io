@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+  }
+  #ageDisplay {
+    background-color: #dcf1f7;
+    padding: 20px;
+    border: none;
+    font-size: calc(10vmin); /* Adjust size based on viewport dimensions */
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="ageDisplay"></div>
+
+<script type="text/javascript">
+  function calculateAge(birthDateTime) {
+    let now = new Date();
+    let birthDate = new Date(birthDateTime);
+    let ageInMilliseconds = now - birthDate;
+    let ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
+    return ageInYears.toFixed(9);
+  }
+
+  function displayAge() {
+    let birthDateTime = prompt("Enter your birth date and time (e.g. May 17 2001 14:41)", "");
+    if (birthDateTime) {
+      setInterval(function() {
+        document.getElementById('ageDisplay').innerText = calculateAge(birthDateTime);
+      }, 1);
+    } else {
+      alert("Invalid input, please try again.");
+      displayAge();
+    }
+  }
+
+  displayAge();
+</script>
+
+</body>
+</html>
